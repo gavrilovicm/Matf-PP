@@ -87,6 +87,24 @@ from datetime import datetime
 - datetime.strftime(format) - **vraca string reprezentaciju objekta datum na osnovu zadatog formata.**
 - datetime.strptime(niska, format) - **vraca objekat tadetime konstruisan na osnovu niske u zadatom formatu.**
 - datetime(godina, mesec, dan [, sat [, minut [, sekund]]]) - **dobija se novi objekat datuma.**
+##### Format za pravljenje string prezentacije objekta datuma
+- %A - dan u nedelji (Monday, Tuesday, ...)
+- %w - dan u nedelji (0, 1, 2 ...)
+- %d - dan (01, 02, 03 ...)
+- %B - mesec (January, February, ...)
+- %b - mesec (Jan, Feb, ...)
+- %m - mesec (01, 02, 03, ...)
+- %Y - godina (1992, 1993, ...)
+- %y - godina (92, 93, ...)
+- %H - sat (00, 01, ...)
+- %M - minut (00, 01, 02, ...)
+- %S - sekund (00, 01, 02, ...)
+##### Primer:
+```
+print datetime.now().strftime("Dan u nedelji : %A/%w, Dan: %d, Mesec : %B/%m, Godina : %Y, Vreme: %H:%M:%S\n")
+```
+##### Izlaz:
+*Dan u nedelji : Wednesday/3, Dan: 27, Mesec : February/02, Godina : 2019, Vreme: 17:18:06*
 ________
 ## Torke
 - torka_1= ("Daffy", "Duck", 11) - **definisanje jedne torke elemenata.**
