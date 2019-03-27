@@ -10,6 +10,14 @@
 - s.upper() - **analogno vraca string sa svim velikim slovima.**
 - s.replace(s1, s2) - **menja string _'s1'_ stringom _'s2'_.**
 - s.split(c\) - **razdvaja string na podstringove koji su razdvojeni sa _'c'_. Rezultat je vracen u obliku liste.**
+##### Stringu ne moze direktno da se promeni karakter k kao u C-u. Trik za izmenu karaktera stringa je sledeci:
+```
+s = "Macka"
+# hocemo da napravimo mnozinu 'Macke'
+lista = list(s)
+lista[-1] = 'e'
+s = ''.join(lista)
+```
 ___________________________
 ## Rad sa datotekama
 - f = open("ime_datoteke.txt", "r") - **otvara se datoteka _'ime_datoteke.txt'_ za pisanje. f je nesto nalik na FILE\* u C-u.**
