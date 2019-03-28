@@ -1,3 +1,4 @@
+-- funkcija vraca proizvod prvih n prirodnih brojeva
 -- prvi nacin
 proizvod :: Integer -> Integer
 proizvod n 

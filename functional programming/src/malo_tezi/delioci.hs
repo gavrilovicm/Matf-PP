@@ -1,3 +1,4 @@
+-- funkcija pravi listu svih pravih delilaca broja n
 delioci n 
 	| n == 1 = [1]
 	| otherwise = delioci1 n 2

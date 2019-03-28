@@ -1,3 +1,4 @@
+-- Funkcija vraca tip kvadratne jednacine
 -- ovde su tipovi za a b i c su Floating zato sto je ** definisana za float
 tipJednacine a b c
 	| a == 0 = "Degenerisana"
