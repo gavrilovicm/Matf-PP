@@ -35,8 +35,7 @@ ghci
 
 **Funkcije preslikavaju vrednosti jednog tipa (ili tipskog razreda) u vrednost drugog tipa (ili tipskog razreda):**
 
-``` duplo :: Int -> Int 
-```
+	duplo :: Int -> Int 
 
 ## Aritmeticke operacije i funckije nad tipovima Int , Integer , Float:
 - +, -, *, /,
@@ -107,9 +106,9 @@ Kada ne koristimo neki deo sablona (npr. rep liste) mozemo da sablon zapisemo i 
 Najbolje se vidi na primeru: Treba generisati listu parnih elemenata iz intervala [a, b]
 
 	generator a b = [x | x <- [a..b], mod x 2 == 0]
-							^
-							|
-							znak za 'podskup'
+				^
+				|
+				znak za 'podskup'
 
 ## Torke
 - Fiksne su duzine
@@ -182,9 +181,9 @@ Lista elemenata se razmotava na sledeci nacin koji je najpogodniji za shvatanje 
 	<=> 1 : [2, 3] 
 	<=> 1 : (2 : [3]) 
 	<=> 1 : (2 : (3 : [])) -- gde je : dodavanje na pocetak liste
-				^
-				|
-			ovo je potpuno razmotana lista
+			^
+			|
+		ovo je potpuno razmotana lista
 
 Uzmimo primer da hocemo da primenimo sabiranje svih elemenata liste. Funkciju koju tada hocemo da primenimo nad 
 elementima liste je funkcija sabiranja tj **(+)**. Funkciju samo zamenimo u potpuno razmotanoj listi umesto znaka **':'**
