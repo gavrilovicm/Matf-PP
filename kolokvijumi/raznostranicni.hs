@@ -1,6 +1,19 @@
 -- zadatak sa sledeceg pdf-a:
 -- http://www.programskijezici.matf.bg.ac.rs/ppI/2018/primeri/Primer_Kolokvijuma.pdf
 
+-------------------------------------------------------------------------------
+-- Predlog kolege Stefana Stefanoivca za jednostavnije resenje:
+
+--  trougao :: Int -> [(Int, Int, Int)]
+--  trougao n = [(x,y,z) | x<-[1..n], y<-[1..n], z<-[1..n], x+y>z, x+z>y, y+z>x]
+--  
+--  raznostr :: [(Int,Int,Int)] -> Int
+--  raznostr l = length([x | x <-l, razn x])
+--  
+--  razn :: (Int,Int,Int) -> Bool
+--  razn (a,b,c) = (a/=b) && (b/=c) && (c/=a)
+
+-------------------------------------------------------------------------------
 
 raznostranicni :: [(Int, Int, Int)] -> Int
 
