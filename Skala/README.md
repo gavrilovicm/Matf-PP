@@ -201,3 +201,63 @@ Sledeci kod ilustruje pozivanje konstruktora za dve klase koje smo napravili izn
 		}
 	}
 
+## Konkurentno programiranje
+
+Hijerarhijska podela konkurentnosti:
+
+- Konkurentna paradigma je najsiri pojam i podrazumeva da se vise procesa izvrsava u istom vremenskom periodu.
+- Paralelna paradigma je specijalizacija koja obuhvata postojanje vise procesora koji omogucavaju istovremeno izvrsavanje
+- Distribuirana paradigma je specijalizacija paralelne paradigme u kojoj su procesori i fizicki razdvojeni(npr. farma racunara)
+
+
+### Scala konkurentno programiranje
+
+Da bi klasa mogla da se pokrece u zasebnim nitima postoje dve opcije:
+
+- Da nasledi klasu **Thread**
+- Da implementira interfejs **Runnable**
+
+#### Implementacija preko nasledjivanje klase Thread
+
+Kada implementiramo klasu koju zelimo da izvrsavamo paralelno, definisemo je tako da nasledjuje klasu **Thread** i obavezno moramo da override-ujemo metod run unutar te klase. Po default-u 
+metod run je prazan. Unutar njega definisemo ono sto zelimo da se izvrsava paralelno(neka petlja na primer). Kada napravimo novi objekat klase, da bi se on paralelno izvrsavao 
+mora da se pozove metod start() nad tim objektom. Tada se pokrece nit koja je vezana za taj konkretan objekat i izvrsava se paralelno nezavisno od ostalih. Primer:
+
+	class Restoran extends Thread {
+		override def run(): Unit = {
+			for ....
+				..
+				..
+		}
+	}
+
+	def main(args: Array[String]): Unit = {
+
+		val Frans = new Restoran()
+
+		Frans.start()
+		println("Gotovo")
+	}
+
+Imajte na umu da ce main posle startovanja niti nastaviti izvrsavanje svog koda i nece cekati na nit. Ako zelimo da main nastavi sa izvrsavanjem tek kada nit zavrsi svoj
+deo posla onda posle startovanja niti pozovemo metod .join() koji ce da zaustavi **main** u liniji u kojoj se nalazi i nece ici dalje sa izvrsavanjem main-a dok se ne zavrsi 
+proces nad kojim je pozvan **join()** metod. U prethodnom primeru **println("Gotovo")** ce se ispisati odmah, bez cekanja na nit **Frans**. U sledecem primeru ce se ispisati tek kada
+nit zavrsi izvrsavanje.
+
+	class Restoran extends Thread {
+		override def run(): Unit = {
+			for ....
+				..
+				..
+		}
+	}
+
+	def main(args: Array[String]): Unit = {
+
+		val Frans = new Restoran()
+
+		Frans.start()
+		Frans.join()
+		println("Gotovo")
+	}
+
