@@ -1,2 +1,8 @@
 #ignore swp files
 *.swp
+
+#vezano samo sa IntelliJ
+**/.idea/workspace.xml
+**/.idea/usage.statistics.xml
+**/.idea/tasks.xml
+**/target
