@@ -72,6 +72,54 @@ Primer pravljenja niza od 5 stringova:
 
 		imena(0) = "Igor"
 
+### Red
+
+Implementacija reda je najpogodnija u slucaju kada ne znamo koja je dimenzija podataka sa kojom radimo. U tom slucaju pustimo red da sam realocira
+memoriju po potrebi i ne brinemo. Definise se na sledeci nacin:
+
+	val red = new ArrayBuffer[String]()
+
+Prvi argument u uglastim zagradama odredjuje tip podataka u redu, default-ni konstruktor se poziva sa nekom inicijalnom vrednoscu koju ne moramo da prosledimo.
+Dodavanje u red se vrsi metodom append:
+
+	red.append(____)
+
+### Mape
+
+Ovde cu opisati klasu **ConcurrentHashMap** koja je pogodnija za koriscenje kada se implementiraju mape koje koriste vise niti. Ova klasa obezbedjuje da u jednom trenutku tacno jedna
+nit moze da pristupa objektu. Sa druge strane ne garantuje da ce menjanje (azuriranje) vrednosti kljuceva mape biti uvek tacno. Opsirnije o ovom problemu je napisano na kraju ovog poglavlja.
+
+	var mapa = new ConcurrentHashMap[Tip_kljuca, Tip_vrednosti](inicijalni_kapacitet_mape, faktor_povecavanja_mape, br_niti)
+
+Inicijalni kapacitet mape se zadaje na pocetku, ako znate koliko elemenata ce mapa imati, stavite taj broj za inicijalni kapacitet mape. Faktor povecavanja
+se zadaje da bi diktirali za koliko mesta cemo da prosirimo kapacitet mape kada se ista popuni do kraja. Treci argument samo odredjuje koliko niti ce istovremeno
+moci da cita vrednosti iz mape.
+
+Dodavanje u mapu:
+
+	mapa.put("kljuc", vrednost)
+
+Citanje vrednosti kljuca iz mape:
+
+	mapa.get("kljuc")
+
+#### Izuzetak kada mapa ne azurira vrednosti kako treba 
+
+Primer loseg azuriranja mape je sledeci: Kada dve niti u isto vreme azuriraju neku vrednost kljuca mape (na primer: 100) doci ce se nekad u situaciju da obe u isto vreme procitaju vrednost kljuca.
+Prva nit azurira vrednost kljuca 100 na neku novu vrednost 105. Zeljeno ponasanje bi bilo da,ako druga nit uvecava vrednost za jedan, druga nit azurira novonastalu vrednost 105 na 106 **ali**
+posto je u drugoj niti ostala procitana stara vrednost 100 (posto smo u isto vreme u obe niti procitali vrednost 100) druga nit ce da prepise vrednost 105 i da je azurira na vrednost starog kljuca (100)
+plus uvecanje 1. Tako da umesto da na kraju imamo vrednost 106 (100 + 5 + 1) mi cemo imati vrednost 101.
+
+Zbog ovakvih problema se uvodi metod koji forsira izvrsavanje ovako delikatnih stvari atomicno. Pozovemo metod **synchronized** nad mapom i pod njim definisemo operacije koje
+zelimo da budu atomicne.
+
+	mapa.synchronized {
+		mapa.replace(...)
+		...
+	}
+
+Imajte na umu da synchronized nije metod koji se specificno vezuje za Hash mapu vec moze da se poziva i za obicnu mapu, nizove i funkcije, za sve sto zelimo da izvrsavamo atomicno.
+
 ## Petlje
 
 ### For petlja 
