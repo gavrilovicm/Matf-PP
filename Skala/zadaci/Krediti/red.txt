@@ -1,0 +1,6 @@
+Pera 12000
+Mika 50000
+Laza 37000
+Luka 100000
+Janko 50000
+Aleksa 37000
