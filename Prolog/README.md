@@ -9,6 +9,10 @@
 - **is** - (primer X is Y) --> Ako je X promenljiva , tada se njoj dodeljuje vrednost koju ima term Y (mora biti
 poznata vrednost), a ukoliko X nije promenljiva , X is Y se svodi na X =:= Y.
 
+## Logicke operacije
+- kada klauze odvajamo zarezom, zarez predstavlja konjukciju.
+- kada klauze odvajamo sa **;**, to predstavlja disjunkciju.
+
 ## Liste
 
 - [] - prazna lista
